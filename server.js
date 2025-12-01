@@ -1,23 +1,19 @@
-// Importa o dotenv para carregar as variáveis de ambiente primeiro
+// server.js
+
 require('dotenv').config(); 
-
-// Importa a aplicação Express configurada
 const app = require('./src/app'); 
-// IMPORTAÇÃO NOVA: Módulo de conexão com o DB
-const connectDB = require('./src/config/db.config');
+const connectDB = require('./src/config/db.config'); // Conexão DB da Task 3
 
-// Define a porta
+// Define a porta (REQUISITO DA TASK 5)
 const PORT = process.env.PORT || 4000;
 
-// Conectar ao banco de dados e só depois iniciar o servidor
+// Conecta ao DB e Inicia o servidor
 connectDB().then(() => {
-    // Inicia o servidor APÓS a conexão bem-sucedida (melhor prática de inicialização)
     app.listen(PORT, () => {
         console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
         console.log(`Ambiente: ${process.env.NODE_ENV || 'development'}`);
     });
 }).catch(err => {
-    // Tratamento de erro caso connectDB() falhe antes de iniciar a escuta
     console.error('Falha crítica ao iniciar a aplicação:', err);
     process.exit(1);
 });
