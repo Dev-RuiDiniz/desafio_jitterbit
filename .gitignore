@@ -1,0 +1,13 @@
+# Diretórios de Módulos
+/node_modules
+
+# Arquivos de Log e Cache
+npm-debug.log*
+yarn-error.log
+.cache
+
+# Variáveis de Ambiente e Arquivos Sensíveis
+.env
+.DS_Store # Mac OS
+/build
+/dist

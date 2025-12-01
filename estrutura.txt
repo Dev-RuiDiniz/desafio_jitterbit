@@ -1,0 +1,13 @@
+/DESAFIO_JITTERBIT
+├── node_modules/         # Módulos do Node (dependências)
+├── src/                  # Código Fonte Principal
+│   ├── config/           # Configurações do App (conexão DB, envs)
+│   ├── controllers/      # Lógica de manipulação de requisições (recebe a req, chama o service)
+│   ├── routes/           # Definição das Rotas da API (mapeamento URL -> controller)
+│   ├── services/         # Regras de Negócio (lógica pura)
+│   ├── models/           # Schemas do Banco de Dados (se for usar um ORM como Mongoose)
+│   └── app.js            # Arquivo principal do Express (configura middlewares, importa rotas)
+├── .env                  # Variáveis de ambiente (ex: porta, segredos)
+├── .gitignore            # Arquivos e diretórios a serem ignorados pelo Git
+├── package.json          # Metadados e lista de dependências
+└── server.js             # Ponto de entrada (cria e sobe o servidor)

@@ -1,0 +1,15 @@
+{
+  "name": "desafio_jitterbit",
+  "version": "1.0.0",
+  "description": "Desafio Jitterbit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rui Francisco de Paula Inácio Diniz",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  }
+}
