@@ -1,4 +1,4 @@
-// src/models/Order.js
+// src/models/Order.js (ATUALIZADO)
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
@@ -17,8 +17,8 @@ const OrderSchema = new Schema({
     orderId: {
         type: String,
         required: true,
-        unique: true, // Garante que não haja pedidos duplicados
-        index: true
+        unique: true,
+        index: true // ✅ GARANTIDO: Índice para busca rápida por ID (GET /orders/:orderId)
     },
     customerName: { type: String, required: true },
     totalAmount: { type: Number, required: true, min: 0 },
@@ -34,6 +34,9 @@ const OrderSchema = new Schema({
 }, { 
     timestamps: true // Adiciona createdAt e updatedAt
 }); 
+
+// ✅ Otimização: Adiciona índice para ordenação por data (listagem/relatórios)
+OrderSchema.index({ createdAt: -1 }); 
 
 const Order = mongoose.model('Order', OrderSchema);
 module.exports = Order;
