@@ -1,11 +1,13 @@
+// src/routes/orderRoutes.js
+
 const express = require('express');
 const router = express.Router();
 const orderController = require('../controllers/orderController');
 
-// Rota para a Criação de um Novo Pedido
+// Rota de Criação: POST /api/v1/orders
 router.post('/orders', orderController.createOrder);
 
-// Rota para a Busca de Pedido por ID (GET /api/v1/orders/:orderId)
+// Rota de Consulta por ID: GET /api/v1/orders/:orderId
 router.get('/orders/:orderId', orderController.getOrderByID);
 
 module.exports = router;

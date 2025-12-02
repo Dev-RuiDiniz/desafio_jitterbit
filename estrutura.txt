@@ -1,13 +1,24 @@
-/DESAFIO_JITTERBIT
-├── node_modules/         # Módulos do Node (dependências)
-├── src/                  # Código Fonte Principal
-│   ├── config/           # Configurações do App (conexão DB, envs)
-│   ├── controllers/      # Lógica de manipulação de requisições (recebe a req, chama o service)
-│   ├── routes/           # Definição das Rotas da API (mapeamento URL -> controller)
-│   ├── services/         # Regras de Negócio (lógica pura)
-│   ├── models/           # Schemas do Banco de Dados (se for usar um ORM como Mongoose)
-│   └── app.js            # Arquivo principal do Express (configura middlewares, importa rotas)
-├── .env                  # Variáveis de ambiente (ex: porta, segredos)
-├── .gitignore            # Arquivos e diretórios a serem ignorados pelo Git
-├── package.json          # Metadados e lista de dependências
-└── server.js             # Ponto de entrada (cria e sobe o servidor)
+Excelente! Com o servidor rodando e as funcionalidades de CRUD (Create/Read) implementadas, vamos organizar o código que criamos até agora.
+
+Aqui está um resumo de todos os arquivos criados e atualizados, separados por suas respectivas camadas de responsabilidade, refletindo o estado atual do seu projeto.
+
+📂 Estrutura do Projeto
+/desafio_jitterbit
+├── node_modules/           # (Gerenciado pelo npm)
+├── src/
+│   ├── config/
+│   │   └── db.config.js    # Conexão com o MongoDB
+│   ├── controllers/
+│   │   └── orderController.js # Lógica de Requisição/Resposta (POST, GET por ID)
+│   ├── models/
+│   │   └── Order.js        # Schema Mongoose para Persistência
+│   ├── routes/
+│   │   └── orderRoutes.js  # Mapeamento de Rotas HTTP (POST /orders, GET /orders/:id)
+│   ├── utils/
+│   │   ├── AppError.js     # Classe de Erro Customizada
+│   │   └── dataMapper.js   # Validação e Transformação de Dados de Entrada
+│   └── app.js              # Configuração Central do Express
+├── .env                    # Variáveis de Ambiente (sensíveis)
+├── .gitignore              # Regras para o Git
+├── package.json            # Metadados e Dependências
+└── server.js               # Ponto de Entrada (Launcher e Inicializador de DB)

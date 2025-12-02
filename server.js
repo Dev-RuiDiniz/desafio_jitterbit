@@ -1,17 +1,18 @@
-// server.js
-
+// 1. Carrega as variáveis de ambiente
 require('dotenv').config(); 
-const app = require('./src/app'); 
-const connectDB = require('./src/config/db.config'); // Conexão DB da Task 3
 
-// Define a porta (REQUISITO DA TASK 5)
+// 2. Importa a aplicação Express e a função de conexão DB
+const app = require('./src/app'); 
+const connectDB = require('./src/config/db.config');
+
+// 3. Define a porta
 const PORT = process.env.PORT || 4000;
 
-// Conecta ao DB e Inicia o servidor
+// 4. Conecta ao DB e só então inicia o servidor
 connectDB().then(() => {
     app.listen(PORT, () => {
+        console.log(`✅ Conexão com o MongoDB estabelecida com sucesso!`);
         console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
-        console.log(`Ambiente: ${process.env.NODE_ENV || 'development'}`);
     });
 }).catch(err => {
     console.error('Falha crítica ao iniciar a aplicação:', err);
