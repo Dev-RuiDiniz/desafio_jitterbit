@@ -1,23 +1,15 @@
-// src/app.js
-
 const express = require('express');
 const app = express();
+const orderRoutes = require('./routes/orderRoutes'); // Importa as rotas de pedido
 
-// Middleware: Processamento de JSON para requisições (REQUISITO DA TASK 5)
 app.use(express.json());
 
-// Rota de Teste/Health Check (REQUISITO DA TASK 5)
-app.get('/', (req, res) => {
-    res.status(200).json({ 
-        message: "Bem-vindo ao Copiloto Programação API!", 
-        status: "Running" 
-    });
-});
-// Podemos adicionar /health especificamente, se preferir:
+// Rota de Teste/Health Check
 app.get('/health', (req, res) => {
     res.status(200).send('OK');
 });
 
+// Integração das Rotas da API (usando um prefixo /api/v1 para boas práticas)
+app.use('/api/v1', orderRoutes);
 
-// Exporta o aplicativo Express
 module.exports = app;
