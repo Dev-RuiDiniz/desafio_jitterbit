@@ -1,4 +1,4 @@
-// src/routes/orderRoutes.js (Adicionar a rota DELETE)
+// src/routes/orderRoutes.js
 
 const express = require('express');
 const router = express.Router();
@@ -19,7 +19,7 @@ router.put('/orders/:orderId', orderController.updateOrder);
 // Rota de Exclusão: DELETE /api/v1/orders/:orderId (NOVA ROTA)
 router.delete('/orders/:orderId', orderController.deleteOrder);
 
-// Rota de Consulta por ID: GET /api/v1/orders/:orderId
+// Rota de Consulta por ID: GET /api/v1/orders/:orderId (Deve ser a última para evitar conflitos)
 router.get('/orders/:orderId', orderController.getOrderByID);
 
 module.exports = router;
