@@ -1,4 +1,4 @@
-// src/routes/orderRoutes.js (Adicionar a rota PUT)
+// src/routes/orderRoutes.js
 
 const express = require('express');
 const router = express.Router();
@@ -13,7 +13,7 @@ router.get('/orders', orderController.listOrders);
 // Rota de Listagem Alternativa: GET /api/v1/orders/list
 router.get('/orders/list', orderController.listOrders); 
 
-// Rota de Atualização: PUT /api/v1/orders/:orderId (Nova Rota)
+// Rota de Atualização: PUT /api/v1/orders/:orderId (NOVA ROTA)
 router.put('/orders/:orderId', orderController.updateOrder);
 
 // Rota de Consulta por ID: GET /api/v1/orders/:orderId
