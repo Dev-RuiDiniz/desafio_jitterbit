@@ -6,13 +6,6 @@ const orderController = require('../controllers/orderController');
 router.post('/orders', orderController.createOrder);
 
 // Rota para a Busca de Pedido por ID (GET /api/v1/orders/:orderId)
-/**
- * @api {get} /orders/:orderId Busca um Pedido Específico
- * @apiName GetOrderByID
- * @apiGroup Order
- * @apiDescription Retorna o pedido correspondente ao orderId.
- * @apiParam {String} orderId ID único do pedido (presente na URL).
- */
 router.get('/orders/:orderId', orderController.getOrderByID);
 
 module.exports = router;
