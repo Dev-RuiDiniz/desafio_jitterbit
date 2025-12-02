@@ -3,24 +3,20 @@
 const Order = require('../models/Order');
 const { mapOrder, AppError } = require('../utils/dataMapper');
 
-const createOrder = async (req, res) => {
+const createOrder = async (req, res, next) => {
     try {
-        const orderData = mapOrder(req.body);
+        const orderData = mapOrder(req.body); 
         const newOrder = new Order(orderData);
         await newOrder.save();
 
-        res.status(201).json({ message: 'Pedido criado com sucesso!', order: newOrder.toObject() });
-
+        res.status(201).json({
+            message: 'Pedido criado com sucesso!',
+            order: newOrder.toObject()
+        });
     } catch (error) {
-        // ... (Lógica de tratamento de erros AppError, MongoServerError e ValidationError) ...
-        if (error instanceof AppError) {
-            return res.status(error.statusCode).json({ message: error.message });
-        }
-        if (error.name === 'MongoServerError' && error.code === 11000) {
-            return res.status(400).json({ message: `O número de pedido '${req.body.numeroPedido}' já existe.` });
-        }
-        // ... (outros erros e 500) ...
-        res.status(500).json({ message: 'Ocorreu um erro interno no servidor.' });
+        // Agora, qualquer erro (AppError, ValidationError, 500) é repassado
+        // ao middleware global de erro.
+        next(error); 
     }
 };
 
