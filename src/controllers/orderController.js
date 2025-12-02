@@ -184,9 +184,44 @@ const updateOrder = async (req, res) => {
     }
 };
 
+/**
+ * @function deleteOrder
+ * @description Exclui um pedido existente no MongoDB pelo orderId.
+ * @param {object} req - Objeto de requisição do Express
+ * @param {object} res - Objeto de resposta do Express
+ */
+const deleteOrder = async (req, res) => {
+    const { orderId } = req.params;
+
+    try {
+        // Usa findOneAndDelete para buscar e remover o documento
+        // Retorna o documento removido ou null se não for encontrado.
+        const deletedOrder = await Order.findOneAndDelete({ orderId: orderId });
+
+        // 1. Tratamento 404 (Pedido não encontrado)
+        if (!deletedOrder) {
+            return res.status(404).json({
+                message: `Pedido com o ID '${orderId}' não encontrado para exclusão.`
+            });
+        }
+
+        // 2. Retorno 204 No Content (Sucesso na exclusão)
+        // O status 204 indica sucesso, mas não há corpo de resposta (body).
+        res.status(204).send();
+
+    } catch (error) {
+        // 3. Tratamento de Erro: 500 Internal Server Error
+        console.error(`❌ Erro ao excluir pedido com ID ${orderId}:`, error);
+        res.status(500).json({
+            message: 'Ocorreu um erro interno no servidor durante a exclusão.'
+        });
+    }
+};
+
 module.exports = {
     createOrder,
     getOrderByID,
     listOrders,
-    updateOrder // <-- Exporta a nova função
+    updateOrder,
+    deleteOrder // <-- Exporta a nova função
 };
